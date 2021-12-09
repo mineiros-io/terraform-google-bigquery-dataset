@@ -1,8 +1,8 @@
-[<img src="https://raw.githubusercontent.com/mineiros-io/brand/3bffd30e8bdbbde32c143e2650b2faa55f1df3ea/mineiros-primary-logo.svg" width="400"/>][homepage]
+[<img src="https://raw.githubusercontent.com/mineiros-io/brand/3bffd30e8bdbbde32c143e2650b2faa55f1df3ea/mineiros-primary-logo.svg" width="400"/>](https://mineiros.io/?ref=terraform-google-bigquery-dataset)
 
-[![Terraform Version][badge-terraform]][releases-terraform]
-[![Google Provider Version][badge-tf-gcp]][releases-google-provider]
-[![Join Slack][badge-slack]][slack]
+[![Terraform Version](https://img.shields.io/badge/Terraform-1.x-623CE4.svg?logo=terraform)](https://github.com/hashicorp/terraform/releases)
+[![Google Provider Version](https://img.shields.io/badge/google-3.x-1A73E8.svg?logo=terraform)](https://github.com/terraform-providers/terraform-provider-google/releases)
+[![Join Slack](https://img.shields.io/badge/slack-@mineiros--community-f32752.svg?logo=slack)](https://mineiros.io/slack)
 
 # terraform-google-bigquery-dataset
 
@@ -15,25 +15,25 @@ This module is part of our Infrastructure as Code (IaC) framework
 that enables our users and customers to easily deploy and manage reusable,
 secure, and production-grade cloud infrastructure.
 
-- [terraform-google-bigquery-dataset](#terraform-google-bigquery-dataset)
-  - [Module Features](#module-features)
-  - [Getting Started](#getting-started)
-  - [Module Argument Reference](#module-argument-reference)
-    - [Top-level Arguments](#top-level-arguments)
-      - [Module Configuration](#module-configuration)
-      - [Main Resource Configuration](#main-resource-configuration)
-      - [Extended Resource Configuration](#extended-resource-configuration)
-  - [Module Attributes Reference](#module-attributes-reference)
-  - [External Documentation](#external-documentation)
-    - [Google Documentation:](#google-documentation)
-    - [Terraform Google Provider Documentation:](#terraform-google-provider-documentation)
-  - [Module Versioning](#module-versioning)
-    - [Backwards compatibility in `0.0.z` and `0.y.z` version](#backwards-compatibility-in-00z-and-0yz-version)
-  - [About Mineiros](#about-mineiros)
-  - [Reporting Issues](#reporting-issues)
-  - [Contributing](#contributing)
-  - [Makefile Targets](#makefile-targets)
-  - [License](#license)
+
+- [Module Features](#module-features)
+- [Getting Started](#getting-started)
+- [Module Argument Reference](#module-argument-reference)
+  - [Top-level Arguments](#top-level-arguments)
+    - [Module Configuration](#module-configuration)
+    - [Main Resource Configuration](#main-resource-configuration)
+    - [Extended Resource Configuration](#extended-resource-configuration)
+- [Module Attributes Reference](#module-attributes-reference)
+- [External Documentation](#external-documentation)
+  - [Google Documentation:](#google-documentation)
+  - [Terraform Google Provider Documentation:](#terraform-google-provider-documentation)
+- [Module Versioning](#module-versioning)
+  - [Backwards compatibility in `0.0.z` and `0.y.z` version](#backwards-compatibility-in-00z-and-0yz-version)
+- [About Mineiros](#about-mineiros)
+- [Reporting Issues](#reporting-issues)
+- [Contributing](#contributing)
+- [Makefile Targets](#makefile-targets)
+- [License](#license)
 
 ## Module Features
 
@@ -59,17 +59,18 @@ See [variables.tf] and [examples/] for details and use-cases.
 
 #### Module Configuration
 
-- **`module_enabled`**: _(Optional `bool`)_
+- [**`module_enabled`**](#var-module_enabled): *(Optional `bool`)*<a name="var-module_enabled"></a>
 
   Specifies whether resources in the module will be created.
 
   Default is `true`.
 
-- **`module_depends_on`**: _(Optional `list(dependencies)`)_
+- [**`module_depends_on`**](#var-module_depends_on): *(Optional `list(dependencies)`)*<a name="var-module_depends_on"></a>
 
   A list of dependencies. Any object can be _assigned_ to this list to define a hidden external dependency.
 
   Example:
+
   ```hcl
   module_depends_on = [
     google_network.network
@@ -78,67 +79,67 @@ See [variables.tf] and [examples/] for details and use-cases.
 
 #### Main Resource Configuration
 
-- **`dataset_id`**: **_(Required `string`)_**
+- [**`dataset_id`**](#var-dataset_id): *(**Required** `string`)*<a name="var-dataset_id"></a>
 
   A unique ID for this dataset, without the project name.
 
-- **`friendly_name`**: _(Optional `string`)_
+- [**`friendly_name`**](#var-friendly_name): *(Optional `string`)*<a name="var-friendly_name"></a>
 
   A descriptive name for the dataset.
 
-- **`description`**: _(Optional `string`)_
+- [**`description`**](#var-description): *(Optional `string`)*<a name="var-description"></a>
 
   A user-friendly description of the dataset.
 
-- **`project`**: _(Optional `string`)_
+- [**`project`**](#var-project): *(Optional `string`)*<a name="var-project"></a>
 
   The ID of the project in which the resource belongs.
-  Default is the project that is configured in the provider.
+Default is the project that is configured in the provider.
 
-- **`location`**: _(Optional `string`)_
+- [**`location`**](#var-location): *(Optional `string`)*<a name="var-location"></a>
 
   The geographic location where the dataset should reside.
 
-- **`default_table_expiration_ms`**: _(Optional `number`)_
+- [**`default_table_expiration_ms`**](#var-default_table_expiration_ms): *(Optional `number`)*<a name="var-default_table_expiration_ms"></a>
 
   The default lifetime of all tables in the dataset, in milliseconds.
-  Once this property is set, all newly-created partitioned tables in the dataset will have an `expirationMs` property in the `timePartitioning` settings set to this value, and changing the value will only affect new tables, not existing ones. The storage in a partition will have an expiration time of its partition time plus this value. Setting this property overrides the use of `defaultTableExpirationMs` for partitioned tables: only one of `defaultTableExpirationMs` and `defaultPartitionExpirationMs` will be used for any new partitioned table. If you provide an explicit `timePartitioning.expirationMs` when creating or updating a partitioned table, that value takes precedence over the default partition expiration time indicated by this property.
+Once this property is set, all newly-created partitioned tables in the dataset will have an `expirationMs` property in the `timePartitioning` settings set to this value, and changing the value will only affect new tables, not existing ones. The storage in a partition will have an expiration time of its partition time plus this value. Setting this property overrides the use of `defaultTableExpirationMs` for partitioned tables: only one of `defaultTableExpirationMs` and `defaultPartitionExpirationMs` will be used for any new partitioned table. If you provide an explicit `timePartitioning.expirationMs` when creating or updating a partitioned table, that value takes precedence over the default partition expiration time indicated by this property.
 
-- **`default_partition_expiration_ms`**: _(Optional `number`)_
+- [**`default_partition_expiration_ms`**](#var-default_partition_expiration_ms): *(Optional `number`)*<a name="var-default_partition_expiration_ms"></a>
 
   The default partition expiration for all partitioned tables in the dataset, in milliseconds.The minimum value is `3600000` milliseconds (one hour).
 
-- **`labels`**: _(Optional `map(string)`)_
+- [**`labels`**](#var-labels): *(Optional `map(string)`)*<a name="var-labels"></a>
 
   Key value pairs in a map for dataset lab.
 
   Default is `{}`.
 
-- **`access`**: _(Optional `list(access)`)_
+- [**`access`**](#var-access): *(Optional `list(access)`)*<a name="var-access"></a>
 
   An array of objects that define dataset access for one or more entities.
 
   Default is `[]`.
 
-  An `access` object can have the following fields:
+  Each object in the list accepts the following attributes:
 
-  - **`domain`**: _(Optional `string`)_
+  - [**`domain`**](#attr-domain-1): *(Optional `string`)*<a name="attr-domain-1"></a>
 
     A domain to grant access to. Any users signed in with the domain specified will be granted the specified access.
 
-  - **`role`**: _(Optional `string`)_
+  - [**`role`**](#attr-role-1): *(Optional `string`)*<a name="attr-role-1"></a>
 
     Describes the rights granted to the user specified by the other member of the access object. Basic, predefined, and custom roles are supported. Predefined roles that have equivalent basic roles are swapped by the API to their basic counterparts.
 
-  - **`group_by_email`**: _(Optional `string`)_
+  - [**`group_by_email`**](#attr-group_by_email-1): *(Optional `string`)*<a name="attr-group_by_email-1"></a>
 
     An email address of a Google Group to grant access to.
 
-  - **`user_by_email`**: _(Optional `string`)_
+  - [**`user_by_email`**](#attr-user_by_email-1): *(Optional `string`)*<a name="attr-user_by_email-1"></a>
 
     An email address of a Google User to grant access to.
 
-  - **`special_group`**: _(Optional `string`)_
+  - [**`special_group`**](#attr-special_group-1): *(Optional `string`)*<a name="attr-special_group-1"></a>
 
     A special group to grant access to. Possible values include:
     - `projectOwners`: Owners of the enclosing project.
@@ -146,56 +147,56 @@ See [variables.tf] and [examples/] for details and use-cases.
     - `projectWriters`: Writers of the enclosing project.
     - `allAuthenticatedUsers`: All authenticated BigQuery users.
 
-- **`view`**: _(Optional `object(view)`)_
+- [**`view`**](#var-view): *(Optional `object(view)`)*<a name="var-view"></a>
 
   A view from a different dataset to grant access to.
 
   Default is `true`.
 
-  A `view` object can have the following fields:
+  The object accepts the following attributes:
 
-  - **`project_id`**: **_(Required `string`)_**
+  - [**`project_id`**](#attr-project_id-1): *(**Required** `string`)*<a name="attr-project_id-1"></a>
 
     The ID of the project containing this table.
 
-  - **`table_id`**: **_(Required `string`)_**
+  - [**`table_id`**](#attr-table_id-1): *(**Required** `string`)*<a name="attr-table_id-1"></a>
 
     The ID of the dataset containing this table.
 
-  - **`dataset_id`**: **_(Required `string`)_**
+  - [**`dataset_id`**](#attr-dataset_id-1): *(**Required** `string`)*<a name="attr-dataset_id-1"></a>
 
     The ID of the table.
 
-- **`default_encryption_configuration`**: _(Optional `object(default_encryption_configuration)`)_
+- [**`default_encryption_configuration`**](#var-default_encryption_configuration): *(Optional `object(default_encryption_configuration)`)*<a name="var-default_encryption_configuration"></a>
 
   The default encryption key for all tables in the dataset. Once this property is set, all newly-created partitioned tables in the dataset will have encryption key set to this value, unless table creation request (or query) overrides the key.
 
-  A `default_encryption_configuration` object can have the following fields:
+  The object accepts the following attributes:
 
-  - **`kms_key_name`**: **_(Required `string`)_**
+  - [**`kms_key_name`**](#attr-kms_key_name-1): *(**Required** `string`)*<a name="attr-kms_key_name-1"></a>
 
     Describes the Cloud KMS encryption key that will be used to protect destination BigQuery table.
     The BigQuery Service Account associated with your project requires access to this encryption key.
 
-- **`delete_contents_on_destroy`**: _(Optional `bool`)_
+- [**`delete_contents_on_destroy`**](#var-delete_contents_on_destroy): *(Optional `bool`)*<a name="var-delete_contents_on_destroy"></a>
 
   If set to true, delete all the tables in the dataset when destroying the resource; otherwise, destroying the resource will fail if tables are present.
 
   Default is `false`.
 
-- **`iam`**: _(Optional `list(iam)`)_
+- [**`iam`**](#var-iam): *(Optional `list(iam)`)*<a name="var-iam"></a>
 
   A list of IAM access to apply to the created secret.
 
   Default is `[]`.
 
-  Each `iam` object can have the following fields:
+  Each object in the list accepts the following attributes:
 
-  - **`role`**: **_(Required `string`)_**
+  - [**`role`**](#attr-role-1): *(**Required** `string`)*<a name="attr-role-1"></a>
 
     The role that should be applied. Note that custom roles must be of the format [projects|organizations]/{parent-name}/roles/{role-name}.
 
-  - **`members`**: _(Optional `set(string)`)_
+  - [**`members`**](#attr-members-1): *(Optional `set(string)`)*<a name="attr-members-1"></a>
 
     Identities that will be granted the privilege in role. Each entry can have one of the following values:
     - `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.
@@ -207,7 +208,7 @@ See [variables.tf] and [examples/] for details and use-cases.
 
     Default is `[]`.
 
-  - **`authoritative`**: _(Optional `bool`)_
+  - [**`authoritative`**](#attr-authoritative-1): *(Optional `bool`)*<a name="attr-authoritative-1"></a>
 
     Whether to exclusively set (authoritative mode) or add (non-authoritative/additive mode) members to the role.
 
@@ -298,25 +299,13 @@ Copyright &copy; 2020-2021 [Mineiros GmbH][homepage]
 
 [homepage]: https://mineiros.io/?ref=terraform-google-bigquery-dataset
 [hello@mineiros.io]: mailto:hello@mineiros.io
-
-<!-- markdown-link-check-disable -->
-
 [badge-build]: https://github.com/mineiros-io/terraform-google-bigquery-dataset/workflows/Tests/badge.svg
-
-<!-- markdown-link-check-enable -->
-
 [badge-semver]: https://img.shields.io/github/v/tag/mineiros-io/terraform-google-bigquery-dataset.svg?label=latest&sort=semver
 [badge-license]: https://img.shields.io/badge/license-Apache%202.0-brightgreen.svg
 [badge-terraform]: https://img.shields.io/badge/Terraform-1.x-623CE4.svg?logo=terraform
 [badge-slack]: https://img.shields.io/badge/slack-@mineiros--community-f32752.svg?logo=slack
-
-<!-- markdown-link-check-disable -->
-
 [build-status]: https://github.com/mineiros-io/terraform-google-bigquery-dataset/actions
 [releases-github]: https://github.com/mineiros-io/terraform-google-bigquery-dataset/releases
-
-<!-- markdown-link-check-enable -->
-
 [releases-terraform]: https://github.com/hashicorp/terraform/releases
 [badge-tf-gcp]: https://img.shields.io/badge/google-3.x-1A73E8.svg?logo=terraform
 [releases-google-provider]: https://github.com/terraform-providers/terraform-provider-google/releases
@@ -325,9 +314,6 @@ Copyright &copy; 2020-2021 [Mineiros GmbH][homepage]
 [terraform]: https://www.terraform.io
 [gcp]: https://cloud.google.com/
 [semantic versioning (semver)]: https://semver.org/
-
-<!-- markdown-link-check-disable -->
-
 [variables.tf]: https://github.com/mineiros-io/terraform-google-bigquery-dataset/blob//main/variables.tf
 [examples/]: https://github.com/mineiros-io/terraform-google-bigquery-dataset/blob/main/examples
 [issues]: https://github.com/mineiros-io/terraform-google-bigquery-dataset/issues
@@ -335,5 +321,3 @@ Copyright &copy; 2020-2021 [Mineiros GmbH][homepage]
 [makefile]: https://github.com/mineiros-io/terraform-google-bigquery-dataset/blob/main/Makefile
 [pull requests]: https://github.com/mineiros-io/terraform-google-bigquery-dataset/pulls
 [contribution guidelines]: https://github.com/mineiros-io/terraform-google-bigquery-dataset/blob/main/CONTRIBUTING.md
-
-<!-- markdown-link-check-enable -->
