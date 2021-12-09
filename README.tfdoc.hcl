@@ -136,6 +136,7 @@ module "terraform-google-bigquery-dataset" {
 
         variable "default_table_expiration_ms" {
           type        = number
+          default     = null
           description = <<-END
     The default lifetime of all tables in the dataset, in milliseconds.
   Once this property is set, all newly-created partitioned tables in the dataset will have an `expirationMs` property in the `timePartitioning` settings set to this value, and changing the value will only affect new tables, not existing ones. The storage in a partition will have an expiration time of its partition time plus this value. Setting this property overrides the use of `defaultTableExpirationMs` for partitioned tables: only one of `defaultTableExpirationMs` and `defaultPartitionExpirationMs` will be used for any new partitioned table. If you provide an explicit `timePartitioning.expirationMs` when creating or updating a partitioned table, that value takes precedence over the default partition expiration time indicated by this property.
@@ -209,7 +210,7 @@ module "terraform-google-bigquery-dataset" {
         variable "view" {
           type        = any
           readme_type = "object(view)"
-          default     = true
+          default     = []
           description = <<-END
     A view from a different dataset to grant access to.
   END
@@ -240,6 +241,20 @@ module "terraform-google-bigquery-dataset" {
 
         }
 
+        variable "role" {
+          type = any
+          readme_type = <<-END
+            list(object({
+            role           = string
+            special_group  = string
+            group_by_email = string
+            user_by_email  = string
+          }))
+          END
+          default     = []
+          description = "(Optional) A map of dataset-level roles including the role, special_group, group_by_email, and user_by_email" 
+        }
+
         variable "default_encryption_configuration" {
           type        = any
           readme_type = "object(default_encryption_configuration)"
@@ -264,6 +279,12 @@ module "terraform-google-bigquery-dataset" {
           description = <<-END
     If set to true, delete all the tables in the dataset when destroying the resource; otherwise, destroying the resource will fail if tables are present.
   END
+        }
+
+        variable "authoritative" {
+          type        = bool
+          default     = true
+          description = "(Optional) google bigquery dataset iam choice whether 'authoritative == true' use google_bigquery_iam_binding, 'authoritative == false' use google_bigquery_iam_member"  
         }
 
         variable "iam" {

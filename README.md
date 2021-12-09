@@ -105,6 +105,8 @@ Default is the project that is configured in the provider.
   The default lifetime of all tables in the dataset, in milliseconds.
 Once this property is set, all newly-created partitioned tables in the dataset will have an `expirationMs` property in the `timePartitioning` settings set to this value, and changing the value will only affect new tables, not existing ones. The storage in a partition will have an expiration time of its partition time plus this value. Setting this property overrides the use of `defaultTableExpirationMs` for partitioned tables: only one of `defaultTableExpirationMs` and `defaultPartitionExpirationMs` will be used for any new partitioned table. If you provide an explicit `timePartitioning.expirationMs` when creating or updating a partitioned table, that value takes precedence over the default partition expiration time indicated by this property.
 
+  Default is `null`.
+
 - [**`default_partition_expiration_ms`**](#var-default_partition_expiration_ms): *(Optional `number`)*<a name="var-default_partition_expiration_ms"></a>
 
   The default partition expiration for all partitioned tables in the dataset, in milliseconds.The minimum value is `3600000` milliseconds (one hour).
@@ -151,7 +153,7 @@ Once this property is set, all newly-created partitioned tables in the dataset w
 
   A view from a different dataset to grant access to.
 
-  Default is `true`.
+  Default is `[]`.
 
   The object accepts the following attributes:
 
@@ -166,6 +168,17 @@ Once this property is set, all newly-created partitioned tables in the dataset w
   - [**`dataset_id`**](#attr-dataset_id-1): *(**Required** `string`)*<a name="attr-dataset_id-1"></a>
 
     The ID of the table.
+
+- [**`role`**](#var-role): *(Optional `list(object({
+  role           = string
+  special_group  = string
+  group_by_email = string
+  user_by_email  = string
+}))`)*<a name="var-role"></a>
+
+  (Optional) A map of dataset-level roles including the role, special_group, group_by_email, and user_by_email
+
+  Default is `[]`.
 
 - [**`default_encryption_configuration`**](#var-default_encryption_configuration): *(Optional `object(default_encryption_configuration)`)*<a name="var-default_encryption_configuration"></a>
 
@@ -183,6 +196,12 @@ Once this property is set, all newly-created partitioned tables in the dataset w
   If set to true, delete all the tables in the dataset when destroying the resource; otherwise, destroying the resource will fail if tables are present.
 
   Default is `false`.
+
+- [**`authoritative`**](#var-authoritative): *(Optional `bool`)*<a name="var-authoritative"></a>
+
+  (Optional) google bigquery dataset iam choice whether 'authoritative == true' use google_bigquery_iam_binding, 'authoritative == false' use google_bigquery_iam_member
+
+  Default is `true`.
 
 - [**`iam`**](#var-iam): *(Optional `list(iam)`)*<a name="var-iam"></a>
 
