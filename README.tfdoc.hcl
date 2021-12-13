@@ -294,7 +294,7 @@ section {
           type        = bool
           default     = true
           description = <<-END
-            (Optional) google bigquery dataset iam choice whether 'authoritative == true' use google_bigquery_iam_binding, 'authoritative == false' use google_bigquery_iam_member
+            Whether to exclusively set (authoritative mode) or add (non-authoritative/additive mode) members to the role.
           END
         }
 
@@ -310,8 +310,8 @@ section {
             required    = true
             type        = string
             description = <<-END
-            The role that should be applied. Note that custom roles must be of the format [projects|organizations]/{parent-name}/roles/{role-name}.
-          END
+              The role that should be applied. Note that custom roles must be of the format [projects|organizations]/{parent-name}/roles/{role-name}.
+            END
           }
 
           attribute "members" {
