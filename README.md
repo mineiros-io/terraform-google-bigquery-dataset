@@ -1,7 +1,9 @@
 [<img src="https://raw.githubusercontent.com/mineiros-io/brand/3bffd30e8bdbbde32c143e2650b2faa55f1df3ea/mineiros-primary-logo.svg" width="400"/>](https://mineiros.io/?ref=terraform-google-bigquery-dataset)
 
+[![Build Status](https://github.com/mineiros-io/terraform-google-bigquery-dataset/workflows/Tests/badge.svg)](https://github.com/mineiros-io/terraform-google-bigquery-dataset/actions)
+[![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/mineiros-io/terraform-google-bigquery-dataset.svg?label=latest&sort=semver)](https://github.com/mineiros-io/terraform-google-bigquery-dataset/releases)
 [![Terraform Version](https://img.shields.io/badge/Terraform-1.x-623CE4.svg?logo=terraform)](https://github.com/hashicorp/terraform/releases)
-[![Google Provider Version](https://img.shields.io/badge/google-3.x-1A73E8.svg?logo=terraform)](https://github.com/terraform-providers/terraform-provider-google/releases)
+[![Google Provider Version](https://img.shields.io/badge/google-4-1A73E8.svg?logo=terraform)](https://github.com/terraform-providers/terraform-provider-google/releases)
 [![Join Slack](https://img.shields.io/badge/slack-@mineiros--community-f32752.svg?logo=slack)](https://mineiros.io/slack)
 
 # terraform-google-bigquery-dataset
@@ -169,12 +171,7 @@ Once this property is set, all newly-created partitioned tables in the dataset w
 
     The ID of the table.
 
-- [**`role`**](#var-role): *(Optional `list(object({
-  role           = string
-  special_group  = string
-  group_by_email = string
-  user_by_email  = string
-}))`)*<a name="var-role"></a>
+- [**`role`**](#var-role): *(Optional `map(role)`)*<a name="var-role"></a>
 
   (Optional) A map of dataset-level roles including the role, special_group, group_by_email, and user_by_email
 
@@ -199,7 +196,7 @@ Once this property is set, all newly-created partitioned tables in the dataset w
 
 - [**`authoritative`**](#var-authoritative): *(Optional `bool`)*<a name="var-authoritative"></a>
 
-  (Optional) google bigquery dataset iam choice whether 'authoritative == true' use google_bigquery_iam_binding, 'authoritative == false' use google_bigquery_iam_member
+  Whether to exclusively set (authoritative mode) or add (non-authoritative/additive mode) members to the role.
 
   Default is `true`.
 
@@ -249,7 +246,7 @@ The following attributes are exported in the outputs of the module:
 
 - **`iam`**
 
-  The iam resource objects that define the access to the secret.
+The iam resource objects that define the access to the secret.
 
 ## External Documentation
 
@@ -311,7 +308,7 @@ Run `make help` to see details on each available target.
 This module is licensed under the Apache License Version 2.0, January 2004.
 Please see [LICENSE] for full details.
 
-Copyright &copy; 2020-2021 [Mineiros GmbH][homepage]
+Copyright &copy; 2020-2022 [Mineiros GmbH][homepage]
 
 
 <!-- References -->
