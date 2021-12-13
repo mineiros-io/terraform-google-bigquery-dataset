@@ -91,7 +91,7 @@ section {
         }
 
         variable "module_depends_on" {
-          type           = list(any)
+          type           = any
           readme_type    = "list(dependencies)"
           description    = <<-END
             A list of dependencies. Any object can be _assigned_ to this list to define a hidden external dependency.
