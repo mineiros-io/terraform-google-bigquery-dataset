@@ -251,14 +251,7 @@ section {
 
         variable "role" {
           type = any
-          readme_type = <<-END
-            list(object({
-            role           = string
-            special_group  = string
-            group_by_email = string
-            user_by_email  = string
-          }))
-          END
+          readme_type = "map(role)"
           default     = []
           description = <<-END
             (Optional) A map of dataset-level roles including the role, special_group, group_by_email, and user_by_email
@@ -450,7 +443,7 @@ section {
       This module is licensed under the Apache License Version 2.0, January 2004.
       Please see [LICENSE] for full details.
 
-      Copyright &copy; 2020-2021 [Mineiros GmbH][homepage]
+      Copyright &copy; 2020-2022 [Mineiros GmbH][homepage]
     END
   }
 }
