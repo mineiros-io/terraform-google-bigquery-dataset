@@ -236,7 +236,7 @@ section {
             required    = true
             type        = string
             description = <<-END
-              The ID of the dataset containing this table.
+              The ID of the table.
             END
           }
 
@@ -244,7 +244,7 @@ section {
             required    = true
             type        = string
             description = <<-END
-              The ID of the table.
+              The ID of the dataset containing this table.
             END
           }
         }
