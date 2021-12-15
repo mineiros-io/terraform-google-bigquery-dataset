@@ -330,15 +330,11 @@ section {
           }
         }
       }
-
-      section {
-        title = "Extended Resource Configuration"
-      }
     }
   }
 
   section {
-    title   = "Module Attributes Reference"
+    title   = "Module Outputs"
     content = <<-END
       The following attributes are exported in the outputs of the module:
 
