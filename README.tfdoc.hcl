@@ -360,7 +360,7 @@ section {
     title = "External Documentation"
 
     section {
-      title   = "Google Documentation:"
+      title   = "Google Documentation"
       content = <<-END
         - Bigquery Dataset: <https://cloud.google.com/bigquery/docs/datasets-intro>
         - Bigquery Access Control: <https://cloud.google.com/bigquery/docs/access-control>
@@ -368,7 +368,7 @@ section {
     }
 
     section {
-      title   = "Terraform Google Provider Documentation:"
+      title   = "Terraform Google Provider Documentation"
       content = <<-END
         - <https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/bigquery_dataset>
         - <https://registry.terraform.io/providers/hashicorp/google/latest/docs/resources/bigquery_dataset_iam>
