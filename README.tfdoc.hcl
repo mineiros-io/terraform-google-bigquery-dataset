@@ -91,8 +91,7 @@ section {
         }
 
         variable "module_depends_on" {
-          type           = any
-          readme_type    = "list(dependencies)"
+          type           = list(dependency)
           description    = <<-END
             A list of dependencies. Any object can be _assigned_ to this list to define a hidden external dependency.
           END
@@ -217,8 +216,7 @@ section {
         }
 
         variable "view" {
-          type        = any
-          readme_type = "object(view)"
+          type        = object(view)
           default     = []
           description = <<-END
             A view from a different dataset to grant access to.
@@ -250,8 +248,7 @@ section {
         }
 
         variable "role" {
-          type = any
-          readme_type = "map(role)"
+          type        = map(role)
           default     = []
           description = <<-END
             (Optional) A map of dataset-level roles including the role, special_group, group_by_email, and user_by_email
@@ -259,8 +256,7 @@ section {
         }
 
         variable "default_encryption_configuration" {
-          type        = any
-          readme_type = "object(default_encryption_configuration)"
+          type        = object(default_encryption_configuration)
           description = <<-END
             The default encryption key for all tables in the dataset. Once this property is set, all newly-created partitioned tables in the dataset will have encryption key set to this value, unless table creation request (or query) overrides the key.
           END
@@ -337,19 +333,29 @@ section {
     title   = "Module Outputs"
     content = <<-END
       The following attributes are exported in the outputs of the module:
-
-      - **`module_enabled`**
-
-        Whether this module is enabled.
-
-      - **`google_bigquery_dataset`**
-
-        A map of outputs of the created google_project_iam_member resources keyed by role.
-
-      - **`iam`**
-
-      The iam resource objects that define the access to the secret.
     END
+
+    output "module_enabled" {
+      type        = bool
+      description = <<-END
+        Whether this module is enabled.
+      END
+    }
+
+    output "google_bigquery_dataset" {
+      type        = object(google_bigquery_dataset)
+      description = <<-END
+        A map of outputs of the created `google_project_iam_member` resourced
+        keyed by role.
+      END
+    }
+
+    output "iam" {
+      type        = list(iam)
+      description = <<-END
+        The iam resource objects that define the access to the secret.
+      END
+    }
   }
 
   section {
@@ -517,4 +523,4 @@ references {
   ref "contribution guidelines" {
     value = "https://github.com/mineiros-io/terraform-google-bigquery-dataset/blob/main/CONTRIBUTING.md"
   }
-} 
+}
