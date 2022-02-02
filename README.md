@@ -66,7 +66,7 @@ See [variables.tf] and [examples/] for details and use-cases.
 
   Default is `true`.
 
-- [**`module_depends_on`**](#var-module_depends_on): *(Optional `list(dependencies)`)*<a name="var-module_depends_on"></a>
+- [**`module_depends_on`**](#var-module_depends_on): *(Optional `list(dependency)`)*<a name="var-module_depends_on"></a>
 
   A list of dependencies. Any object can be _assigned_ to this list to define a hidden external dependency.
 
@@ -95,7 +95,7 @@ See [variables.tf] and [examples/] for details and use-cases.
 - [**`project`**](#var-project): *(Optional `string`)*<a name="var-project"></a>
 
   The ID of the project in which the resource belongs.
-Default is the project that is configured in the provider.
+  Default is the project that is configured in the provider.
 
 - [**`location`**](#var-location): *(Optional `string`)*<a name="var-location"></a>
 
@@ -104,7 +104,7 @@ Default is the project that is configured in the provider.
 - [**`default_table_expiration_ms`**](#var-default_table_expiration_ms): *(Optional `number`)*<a name="var-default_table_expiration_ms"></a>
 
   The default lifetime of all tables in the dataset, in milliseconds.
-Once this property is set, all newly-created partitioned tables in the dataset will have an `expirationMs` property in the `timePartitioning` settings set to this value, and changing the value will only affect new tables, not existing ones. The storage in a partition will have an expiration time of its partition time plus this value. Setting this property overrides the use of `defaultTableExpirationMs` for partitioned tables: only one of `defaultTableExpirationMs` and `defaultPartitionExpirationMs` will be used for any new partitioned table. If you provide an explicit `timePartitioning.expirationMs` when creating or updating a partitioned table, that value takes precedence over the default partition expiration time indicated by this property.
+  Once this property is set, all newly-created partitioned tables in the dataset will have an `expirationMs` property in the `timePartitioning` settings set to this value, and changing the value will only affect new tables, not existing ones. The storage in a partition will have an expiration time of its partition time plus this value. Setting this property overrides the use of `defaultTableExpirationMs` for partitioned tables: only one of `defaultTableExpirationMs` and `defaultPartitionExpirationMs` will be used for any new partitioned table. If you provide an explicit `timePartitioning.expirationMs` when creating or updating a partitioned table, that value takes precedence over the default partition expiration time indicated by this property.
 
   Default is `null`.
 
@@ -118,31 +118,31 @@ Once this property is set, all newly-created partitioned tables in the dataset w
 
   Default is `{}`.
 
-- [**`access`**](#var-access): *(Optional `list(access)`)*<a name="var-access"></a>
+- [**`access`**](#var-access): *(Optional `list(any)`)*<a name="var-access"></a>
 
   An array of objects that define dataset access for one or more entities.
 
   Default is `[]`.
 
-  Each object in the list accepts the following attributes:
+  Each `` object in the list accepts the following attributes:
 
-  - [**`domain`**](#attr-domain-1): *(Optional `string`)*<a name="attr-domain-1"></a>
+  - [**`domain`**](#attr-access-domain): *(Optional `string`)*<a name="attr-access-domain"></a>
 
     A domain to grant access to. Any users signed in with the domain specified will be granted the specified access.
 
-  - [**`role`**](#attr-role-1): *(Optional `string`)*<a name="attr-role-1"></a>
+  - [**`role`**](#attr-access-role): *(Optional `string`)*<a name="attr-access-role"></a>
 
     Describes the rights granted to the user specified by the other member of the access object. Basic, predefined, and custom roles are supported. Predefined roles that have equivalent basic roles are swapped by the API to their basic counterparts.
 
-  - [**`group_by_email`**](#attr-group_by_email-1): *(Optional `string`)*<a name="attr-group_by_email-1"></a>
+  - [**`group_by_email`**](#attr-access-group_by_email): *(Optional `string`)*<a name="attr-access-group_by_email"></a>
 
     An email address of a Google Group to grant access to.
 
-  - [**`user_by_email`**](#attr-user_by_email-1): *(Optional `string`)*<a name="attr-user_by_email-1"></a>
+  - [**`user_by_email`**](#attr-access-user_by_email): *(Optional `string`)*<a name="attr-access-user_by_email"></a>
 
     An email address of a Google User to grant access to.
 
-  - [**`special_group`**](#attr-special_group-1): *(Optional `string`)*<a name="attr-special_group-1"></a>
+  - [**`special_group`**](#attr-access-special_group): *(Optional `string`)*<a name="attr-access-special_group"></a>
 
     A special group to grant access to. Possible values include:
     - `projectOwners`: Owners of the enclosing project.
@@ -156,17 +156,17 @@ Once this property is set, all newly-created partitioned tables in the dataset w
 
   Default is `[]`.
 
-  The object accepts the following attributes:
+  The `view` object accepts the following attributes:
 
-  - [**`project_id`**](#attr-project_id-1): *(**Required** `string`)*<a name="attr-project_id-1"></a>
+  - [**`project_id`**](#attr-view-project_id): *(**Required** `string`)*<a name="attr-view-project_id"></a>
 
     The ID of the project containing this table.
 
-  - [**`table_id`**](#attr-table_id-1): *(**Required** `string`)*<a name="attr-table_id-1"></a>
+  - [**`table_id`**](#attr-view-table_id): *(**Required** `string`)*<a name="attr-view-table_id"></a>
 
     The ID of the table.
 
-  - [**`dataset_id`**](#attr-dataset_id-1): *(**Required** `string`)*<a name="attr-dataset_id-1"></a>
+  - [**`dataset_id`**](#attr-view-dataset_id): *(**Required** `string`)*<a name="attr-view-dataset_id"></a>
 
     The ID of the dataset containing this table.
 
@@ -180,9 +180,9 @@ Once this property is set, all newly-created partitioned tables in the dataset w
 
   The default encryption key for all tables in the dataset. Once this property is set, all newly-created partitioned tables in the dataset will have encryption key set to this value, unless table creation request (or query) overrides the key.
 
-  The object accepts the following attributes:
+  The `default_encryption_configuration` object accepts the following attributes:
 
-  - [**`kms_key_name`**](#attr-kms_key_name-1): *(**Required** `string`)*<a name="attr-kms_key_name-1"></a>
+  - [**`kms_key_name`**](#attr-default_encryption_configuration-kms_key_name): *(**Required** `string`)*<a name="attr-default_encryption_configuration-kms_key_name"></a>
 
     Describes the Cloud KMS encryption key that will be used to protect destination BigQuery table.
     The BigQuery Service Account associated with your project requires access to this encryption key.
@@ -199,19 +199,19 @@ Once this property is set, all newly-created partitioned tables in the dataset w
 
   Default is `true`.
 
-- [**`iam`**](#var-iam): *(Optional `list(iam)`)*<a name="var-iam"></a>
+- [**`iam`**](#var-iam): *(Optional `list(any)`)*<a name="var-iam"></a>
 
   A list of IAM access to apply to the created secret.
 
   Default is `[]`.
 
-  Each object in the list accepts the following attributes:
+  Each `` object in the list accepts the following attributes:
 
-  - [**`role`**](#attr-role-1): *(**Required** `string`)*<a name="attr-role-1"></a>
+  - [**`role`**](#attr-iam-role): *(**Required** `string`)*<a name="attr-iam-role"></a>
 
     The role that should be applied. Note that custom roles must be of the format [projects|organizations]/{parent-name}/roles/{role-name}.
 
-  - [**`members`**](#attr-members-1): *(Optional `set(string)`)*<a name="attr-members-1"></a>
+  - [**`members`**](#attr-iam-members): *(Optional `set(string)`)*<a name="attr-iam-members"></a>
 
     Identities that will be granted the privilege in role. Each entry can have one of the following values:
     - `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.
@@ -223,7 +223,7 @@ Once this property is set, all newly-created partitioned tables in the dataset w
 
     Default is `[]`.
 
-  - [**`authoritative`**](#attr-authoritative-1): *(Optional `bool`)*<a name="attr-authoritative-1"></a>
+  - [**`authoritative`**](#attr-iam-authoritative): *(Optional `bool`)*<a name="attr-iam-authoritative"></a>
 
     Whether to exclusively set (authoritative mode) or add (non-authoritative/additive mode) members to the role.
 
@@ -233,17 +233,18 @@ Once this property is set, all newly-created partitioned tables in the dataset w
 
 The following attributes are exported in the outputs of the module:
 
-- **`module_enabled`**
+- [**`module_enabled`**](#output-module_enabled): *(`bool`)*<a name="output-module_enabled"></a>
 
   Whether this module is enabled.
 
-- **`google_bigquery_dataset`**
+- [**`google_bigquery_dataset`**](#output-google_bigquery_dataset): *(`object(google_bigquery_dataset)`)*<a name="output-google_bigquery_dataset"></a>
 
-  A map of outputs of the created google_project_iam_member resources keyed by role.
+  A map of outputs of the created `google_project_iam_member` resourced
+  keyed by role.
 
-- **`iam`**
+- [**`iam`**](#output-iam): *(`list(iam)`)*<a name="output-iam"></a>
 
-The iam resource objects that define the access to the secret.
+  The iam resource objects that define the access to the secret.
 
 ## External Documentation
 
