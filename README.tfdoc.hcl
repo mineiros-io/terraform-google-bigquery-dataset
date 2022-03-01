@@ -62,7 +62,7 @@ section {
 
       ```hcl
       module "terraform-google-bigquery-dataset" {
-        source = "github.com/mineiros-io/terraform-google-bigquery-dataset.git?ref=v0.1.0"
+        source = "github.com/mineiros-io/terraform-google-bigquery-dataset.git?ref=v0.1.1"
 
         dataset_id = "example_dataset"
       }

@@ -46,7 +46,7 @@ Most basic usage just setting required arguments:
 
 ```hcl
 module "terraform-google-bigquery-dataset" {
-  source = "github.com/mineiros-io/terraform-google-bigquery-dataset.git?ref=v0.1.0"
+  source = "github.com/mineiros-io/terraform-google-bigquery-dataset.git?ref=v0.1.1"
 
   dataset_id = "example_dataset"
 }
@@ -118,7 +118,7 @@ See [variables.tf] and [examples/] for details and use-cases.
 
   Default is `{}`.
 
-- [**`access`**](#var-access): *(Optional `list(any)`)*<a name="var-access"></a>
+- [**`access`**](#var-access): *(Optional `list(object)`)*<a name="var-access"></a>
 
   An array of objects that define dataset access for one or more entities.
 
@@ -199,7 +199,7 @@ See [variables.tf] and [examples/] for details and use-cases.
 
   Default is `true`.
 
-- [**`iam`**](#var-iam): *(Optional `list(any)`)*<a name="var-iam"></a>
+- [**`iam`**](#var-iam): *(Optional `list(object)`)*<a name="var-iam"></a>
 
   A list of IAM access to apply to the created secret.
 
