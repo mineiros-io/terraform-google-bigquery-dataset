@@ -113,12 +113,13 @@ variable "view" {
 variable "role" {
   description = "(Optional) A map of dataset-level roles including the role, special_group, group_by_email, and user_by_email"
   default     = []
-  type = list(object({
-    role           = string
-    special_group  = string
-    group_by_email = string
-    user_by_email  = string
-  }))
+  type        = any
+  #type = list(object({
+  #  role           = string
+  #  special_group  = string
+  #  group_by_email = string
+  #  user_by_email  = string
+  #}))
 }
 
 variable "default_encryption_configuration" {

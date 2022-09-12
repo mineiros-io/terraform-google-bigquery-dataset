@@ -118,13 +118,13 @@ See [variables.tf] and [examples/] for details and use-cases.
 
   Default is `{}`.
 
-- [**`access`**](#var-access): *(Optional `list(object)`)*<a name="var-access"></a>
+- [**`access`**](#var-access): *(Optional `list(access)`)*<a name="var-access"></a>
 
   An array of objects that define dataset access for one or more entities.
 
   Default is `[]`.
 
-  Each `` object in the list accepts the following attributes:
+  Each `access` object in the list accepts the following attributes:
 
   - [**`domain`**](#attr-access-domain): *(Optional `string`)*<a name="attr-access-domain"></a>
 
@@ -199,13 +199,13 @@ See [variables.tf] and [examples/] for details and use-cases.
 
   Default is `true`.
 
-- [**`iam`**](#var-iam): *(Optional `list(object)`)*<a name="var-iam"></a>
+- [**`iam`**](#var-iam): *(Optional `list(iam)`)*<a name="var-iam"></a>
 
   A list of IAM access to apply to the created secret.
 
   Default is `[]`.
 
-  Each `` object in the list accepts the following attributes:
+  Each `iam` object in the list accepts the following attributes:
 
   - [**`role`**](#attr-iam-role): *(**Required** `string`)*<a name="attr-iam-role"></a>
 
