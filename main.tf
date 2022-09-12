@@ -11,6 +11,7 @@ resource "google_bigquery_dataset" "dataset" {
   project                         = var.project
   location                        = var.location
   delete_contents_on_destroy      = var.delete_contents_on_destroy
+  labels                          = var.labels
 
   dynamic "access" {
     for_each = toset(var.access)
