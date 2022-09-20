@@ -168,7 +168,7 @@ section {
         }
 
         variable "access" {
-          type        = list(any)
+          type        = list(access)
           readme_type = "list(access)"
           default     = []
           description = <<-END
@@ -288,8 +288,7 @@ section {
         }
 
         variable "iam" {
-          type        = list(any)
-          readme_type = "list(iam)"
+          type        = list(iam)
           default     = []
           description = <<-END
             A list of IAM access to apply to the created secret.
