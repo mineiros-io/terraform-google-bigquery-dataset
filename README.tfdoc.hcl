@@ -80,30 +80,6 @@ section {
       title = "Top-level Arguments"
 
       section {
-        title = "Module Configuration"
-
-        variable "module_enabled" {
-          type        = bool
-          default     = true
-          description = <<-END
-            Specifies whether resources in the module will be created.
-          END
-        }
-
-        variable "module_depends_on" {
-          type           = list(dependency)
-          description    = <<-END
-            A list of dependencies. Any object can be _assigned_ to this list to define a hidden external dependency.
-          END
-          readme_example = <<-END
-            module_depends_on = [
-              google_network.network
-            ]
-          END
-        }
-      }
-
-      section {
         title = "Main Resource Configuration"
 
         variable "dataset_id" {
@@ -291,7 +267,7 @@ section {
           type        = list(iam)
           default     = []
           description = <<-END
-            A list of IAM access to apply to the created secret.
+            A list of IAM access to apply to the created BigQuery dataset.
           END
 
           attribute "role" {
@@ -326,6 +302,30 @@ section {
         }
       }
     }
+
+    section {
+      title = "Module Configuration"
+
+      variable "module_enabled" {
+        type        = bool
+        default     = true
+        description = <<-END
+          Specifies whether resources in the module will be created.
+        END
+      }
+
+      variable "module_depends_on" {
+        type           = list(dependency)
+        description    = <<-END
+          A list of dependencies. Any object can be _assigned_ to this list to define a hidden external dependency.
+        END
+        readme_example = <<-END
+          module_depends_on = [
+            google_network.network
+          ]
+        END
+      }
+    }
   }
 
   section {
@@ -334,25 +334,17 @@ section {
       The following attributes are exported in the outputs of the module:
     END
 
-    output "module_enabled" {
-      type        = bool
-      description = <<-END
-        Whether this module is enabled.
-      END
-    }
-
     output "google_bigquery_dataset" {
       type        = object(google_bigquery_dataset)
       description = <<-END
-        A map of outputs of the created `google_project_iam_member` resourced
-        keyed by role.
+        The google_bigquery_dataset resource object created by this module.
       END
     }
 
     output "iam" {
       type        = list(iam)
       description = <<-END
-        The iam resource objects that define the access to the secret.
+        The resources created by `mineiros-io/bigquery-dataset-iam/google` module.
       END
     }
   }

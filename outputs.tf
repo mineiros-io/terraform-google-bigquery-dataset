@@ -7,13 +7,13 @@
 # ------------------------------------------------------------------------------
 
 output "google_bigquery_dataset" {
-  description = "A map of outputs of the created google_project_iam_member resources keyed by role."
+  description = "The google_bigquery_dataset resource object created by this module."
   value       = try(google_bigquery_dataset.dataset[0], {})
 }
 
 # remap iam to reduce one level of access (iam[]. instead of iam[].iam.)
 output "iam" {
-  description = "The iam resource objects that define the access to the secret"
+  description = "The resources created by `mineiros-io/bigquery-dataset-iam/google` module."
   value       = { for key, iam in module.iam : key => iam.iam }
 }
 
@@ -24,8 +24,3 @@ output "iam" {
 # ------------------------------------------------------------------------------
 # OUTPUT MODULE CONFIGURATION
 # ------------------------------------------------------------------------------
-
-output "module_enabled" {
-  description = "Whether the module is enabled."
-  value       = var.module_enabled
-}
