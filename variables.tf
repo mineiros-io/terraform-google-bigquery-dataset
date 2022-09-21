@@ -149,7 +149,7 @@ variable "authoritative" {
 
 variable "iam" {
   type        = any
-  description = "(Optional) A list of IAM access to apply to the created secret"
+  description = "(Optional) A list of IAM access to apply to the created BigQuery dataset"
   default     = []
 }
 
