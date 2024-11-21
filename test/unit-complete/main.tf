@@ -14,6 +14,19 @@ module "test" {
     env = "default"
   }
 
+  resource_tags = {
+    "key" : "value",
+    "key2" : "value2",
+  }
+
+  external_dataset_reference = {
+    external_source = "aws-glue://arn:aws:glue:us-east-1:999999999999:database/database"
+    connection      = "projects/project/locations/aws-us-east-1/connections/connection"
+  }
+
+  is_case_insensitive   = false
+  max_time_travel_hours = 48
+
   access = [
     {
       role           = "roles/browser"

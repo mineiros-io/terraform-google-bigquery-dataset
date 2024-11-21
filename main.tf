@@ -6,12 +6,15 @@ resource "google_bigquery_dataset" "dataset" {
   dataset_id                      = var.dataset_id
   default_table_expiration_ms     = var.default_table_expiration_ms
   default_partition_expiration_ms = var.default_partition_expiration_ms
+  max_time_travel_hours           = var.max_time_travel_hours
+  is_case_insensitive             = var.is_case_insensitive
   description                     = var.description
   friendly_name                   = var.friendly_name
   project                         = var.project
   location                        = var.location
   delete_contents_on_destroy      = var.delete_contents_on_destroy
   labels                          = var.labels
+  resource_tags                   = var.resource_tags
 
   dynamic "access" {
     for_each = toset(var.access)
@@ -41,6 +44,15 @@ resource "google_bigquery_dataset" "dataset" {
 
     content {
       kms_key_name = default_encryption_configuration.value.kms_key_name
+    }
+  }
+
+  dynamic "external_dataset_reference" {
+    for_each = var.external_dataset_reference == null ? [] : [var.external_dataset_reference]
+
+    content {
+      external_source = external_dataset_reference.value.external_source
+      connection      = external_dataset_reference.value.connection
     }
   }
 

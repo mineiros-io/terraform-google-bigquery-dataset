@@ -143,6 +143,40 @@ section {
           END
         }
 
+        variable "resource_tags" {
+          type        = any
+          default     = null
+          description = <<-END
+            The tags attached to this table. Tag keys are globally unique.
+            Tag key is expected to be in the namespaced format, for example "123456789012/environment"
+            where 123456789012 is the ID of the parent organization or project resource for this tag key.
+            Tag value is expected to be the short name, for example "Production".
+          END
+        }
+
+        variable "max_time_travel_hours" {
+          description = "Defines the time travel window in hours. The value can be from 48 to 168 hours (2 to 7 days)."
+          type        = number
+          default     = null
+        }
+
+        variable "external_dataset_reference" {
+          type        = any
+          default     = null
+          description = <<-END
+            Information about the external metadata storage where the dataset is defined."
+            Supported attributes:
+            - external_source - (Required) External source that backs this dataset.
+            - connection - (Required) The connection id that is used to access the externalSource. Format: projects/{projectId}/locations/{locationId}/connections/{connectionId}
+          END
+        }
+
+        variable "is_case_insensitive" {
+          description = "TRUE if the dataset and its table names are case-insensitive, otherwise FALSE. By default, this is FALSE, which means the dataset and its table names are case-sensitive. This field does not affect routine references."
+          type        = bool
+          default     = false
+        }
+
         variable "access" {
           type        = list(access)
           readme_type = "list(access)"
