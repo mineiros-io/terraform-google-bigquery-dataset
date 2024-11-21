@@ -1,5 +1,5 @@
 globals {
   provider                    = "google"
-  minimum_provider_version    = "4.0"
-  provider_version_constraint = "~> ${global.minimum_provider_version}"
+  minimum_provider_version    = "5.39"
+  provider_version_constraint = "~> 6.0"
 }

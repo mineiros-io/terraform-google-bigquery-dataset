@@ -65,6 +65,34 @@ variable "labels" {
   default     = {}
 }
 
+variable "max_time_travel_hours" {
+  description = "(Optional) Defines the time travel window in hours. The value can be from 48 to 168 hours (2 to 7 days)."
+  type        = number
+  default     = null
+}
+
+variable "external_dataset_reference" {
+  description = "(Optional) Information about the external metadata storage where the dataset is defined."
+  type        = any
+  default     = null
+
+  ## Attributes:
+  # external_source - (Required) External source that backs this dataset.
+  # connection - (Required) The connection id that is used to access the externalSource. Format: projects/{projectId}/locations/{locationId}/connections/{connectionId}
+}
+
+variable "is_case_insensitive" {
+  description = "(Optional) TRUE if the dataset and its table names are case-insensitive, otherwise FALSE. By default, this is FALSE, which means the dataset and its table names are case-sensitive. This field does not affect routine references."
+  type        = bool
+  default     = false
+}
+
+variable "resource_tags" {
+  description = "(Optional) The tags attached to this table. Tag keys are globally unique. Tag key is expected to be in the namespaced format, for example \"123456789012/environment\" where 123456789012 is the ID of the parent organization or project resource for this tag key. Tag value is expected to be the short name, for example \"Production\"."
+  type        = any
+  default     = null
+}
+
 variable "access" {
   # type = list(object({
   # #(Optional) A domain to grant access to. Any users signed in with the domain specified will be granted the specified access

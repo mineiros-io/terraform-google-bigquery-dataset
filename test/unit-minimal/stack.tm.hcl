@@ -6,7 +6,7 @@ stack {
   EOD
 }
 
-# in this stack we want to test the exact minimum provider version so let's set contraint accodingly
+# in this stack we want to test the exact minimum provider version so let's set constraint accordingly
 globals {
   provider_version_constraint = global.minimum_provider_version
 }

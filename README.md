@@ -98,6 +98,36 @@ See [variables.tf] and [examples/] for details and use-cases.
 
   Default is `{}`.
 
+- [**`resource_tags`**](#var-resource_tags): *(Optional `any`)*<a name="var-resource_tags"></a>
+
+  The tags attached to this table. Tag keys are globally unique.
+  Tag key is expected to be in the namespaced format, for example "123456789012/environment"
+  where 123456789012 is the ID of the parent organization or project resource for this tag key.
+  Tag value is expected to be the short name, for example "Production".
+
+  Default is `null`.
+
+- [**`max_time_travel_hours`**](#var-max_time_travel_hours): *(Optional `number`)*<a name="var-max_time_travel_hours"></a>
+
+  Defines the time travel window in hours. The value can be from 48 to 168 hours (2 to 7 days).
+
+  Default is `null`.
+
+- [**`external_dataset_reference`**](#var-external_dataset_reference): *(Optional `any`)*<a name="var-external_dataset_reference"></a>
+
+  Information about the external metadata storage where the dataset is defined."
+  Supported attributes:
+  - external_source - (Required) External source that backs this dataset.
+  - connection - (Required) The connection id that is used to access the externalSource. Format: projects/{projectId}/locations/{locationId}/connections/{connectionId}
+
+  Default is `null`.
+
+- [**`is_case_insensitive`**](#var-is_case_insensitive): *(Optional `bool`)*<a name="var-is_case_insensitive"></a>
+
+  TRUE if the dataset and its table names are case-insensitive, otherwise FALSE. By default, this is FALSE, which means the dataset and its table names are case-sensitive. This field does not affect routine references.
+
+  Default is `false`.
+
 - [**`access`**](#var-access): *(Optional `list(access)`)*<a name="var-access"></a>
 
   An array of objects that define dataset access for one or more entities.
